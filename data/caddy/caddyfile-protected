@@ -3,16 +3,11 @@ https://$PANEL_DOMAIN {
         reverse_proxy http://remnawave:$PANEL_PORT
     }
 
-    handle /$LOGIN_ROUTE* {
+    handle {
         basicauth {
             $ADMIN_LOGIN $ADMIN_PASSWORD_HASH
         }
-        uri strip_prefix /$LOGIN_ROUTE
         reverse_proxy http://remnawave:$PANEL_PORT
-    }
-
-    handle {
-        respond 404
     }
 }
 
